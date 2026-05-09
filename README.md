@@ -43,9 +43,9 @@ The purpose is to have code with which to show best practices. For example,
 * use github actions; <https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action>
 
 
-There are 4 ways to explore this project:
-* look in the folder `completed_script` for the result.
-* The tutorial folder contains the progression of adding the capabilities to the trivial task.
+There are four ways to explore this project:
+* THe quickest is to look in the folder `completed_script` for the result.
+* The tutorial folder contains three ways to assess the progression of adding the capabilities to the trivial task.
   * as a sequence of `.py` files; see `tutorial_on_how_to_evolve_from_research-grade_to_production/input_files/`
   * as a README containing the progression as in-line diffs: `tutorial_on_how_to_evolve_from_research-grade_to_production/README_inline_diff.md`
   * as a README containing the progression as side-by-side diffs: `tutorial_on_how_to_evolve_from_research-grade_to_production/README_diff_side-by-side.md`
