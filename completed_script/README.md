@@ -1,16 +1,16 @@
 
 # what happens if no arguments are provided?
 
-Here we assume all necessary packages are on the host
+In this first example, two approaches are used: operating from within the Docker image, and running the Docker image from the host. The rest of the examples in this README then stick with the first approach, though the run-Docker-from-host also applies.
 
+Running inside the Docker container,
 ```bash
 python3 completed_script/produce_output.py
     usage: produce_output.py [-h] nodes_in_graph
     produce_output.py: error: the following arguments are required: nodes_in_graph
 ```
 
-If you have compiled the Docker image, then
-
+Running the Docker container from the host,
 ```bash
 docker run -it -v `pwd`:/scratch --rm interface_demo python3 /scratch/completed_script/produce_output.py
     usage: produce_output.py [-h] nodes_in_graph
@@ -19,7 +19,7 @@ docker run -it -v `pwd`:/scratch --rm interface_demo python3 /scratch/completed_
 
 For the rest of these examples you can prefix the command with `docker run -it -v `pwd`:/scratch --rm interface_demo /scratch` as needed.
 
-# run as script
+# run graph generation as a script
 
 ```
 python3 produce_output.py 4
