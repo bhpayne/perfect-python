@@ -1,4 +1,4 @@
-## What would it take to get a simple Python script with a single function to be production quality?
+## How to get a Python script with a single function to be production quality?
 
 This repository serves as a demonstration and boilerplate for Python best practices. 
 A script (`completed/script/produce_output.py`) generates a random directed graph. 
