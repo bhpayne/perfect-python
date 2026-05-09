@@ -17,7 +17,7 @@ docker run -it -v `pwd`:/scratch --rm interface_demo python3 /scratch/completed_
     produce_output.py: error: the following arguments are required: nodes_in_graph
 ```
 
-For the rest of these examples you can prefix the command with `docker run -it -v `pwd`:/scratch --rm interface_demo /scratch` as needed.
+For the rest of these examples you can prefix the command with `docker run -it -v ``pwd``:/scratch --rm interface_demo /scratch` as needed.
 
 # run graph generation as a script
 
@@ -53,6 +53,13 @@ python3 produce_output.py --help
     (3, 2)
     (3, 3)
     (3, 0)
+
+
+# Output as JSON with a specific random seed for reproducibility
+
+```
+python3 produce_output.py 4 --json --seed 42
+```
 
 # interactive help
 
@@ -97,8 +104,17 @@ python3 produce_output.py --help
     (2, 2)
     (3, 2)
 
+# Documentation files
 
+The Dockerfile automatically generates Doxygen and Sphinx documentation (both HTML and PDF) during the build process. To extract these from the image to your local machine, run:
 
+```bash
+# On the host create local folders
+mkdir -p docs_output/doxygen docs_output/sphinx
+
+# Copy the generated docs out of a temporary container
+docker run --rm -v `pwd`/docs_output:/output interface_demo /bin/sh -c "cp -r /opt/latex/* /output/doxygen/ && cp -r /opt/build/* /output/sphinx/"
+```
 
 In addition to the Python cleanliness tools in the Makefile, there are two additional test script written specifically to evaluate `produce_output.py`
 
