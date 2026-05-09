@@ -1,35 +1,42 @@
 FILE_NAME=produce_output.py
+IMAGE_NAME=interface_demo
 
 help:
-	@echo "make docker_shell"
-	@echo "make pydeps"
-	@echo "make mypy"
-	@echo "        make docker_mypy"
-	@echo "make unittest"
-	@echo "make pytest"
-	@echo "make pycallgraph"
-	@echo "        make docker_pycallgraph"
-	@echo "make prospector"
-	@echo "make flake8"
-	@echo "make black"
-	@echo "make pylint"
-	@echo "make doctest"
-	@echo "        make docker_doctest"
-	@echo "make mccabe"
-	@echo "make clean"
 
+	@echo "Docker Setup:"
+	@echo "  make docker_shell      - Open an interactive bash shell in the container"
+	@echo ""
+	@echo "Formatting & Linting:"
+	@echo "  make black             - Auto-format code using Black"
+	@echo "  make flake8            - Check style consistency (PEP8)"
+	@echo "  make pylint            - Check for errors and code smells"
+	@echo "  make prospector        - Comprehensive static analysis"
+	@echo ""
+	@echo "Type Checking & Complexity:"
+	@echo "  make mypy              - Run static type checker"
+	@echo "  make mccabe            - Check cyclomatic complexity"
+	@echo "  make pydeps            - Generate module dependency graphs"
+	@echo "  make pycallgraph       - Generate execution call graphs"
+	@echo ""
+	@echo "Testing:"
+	@echo "  make doctest           - Run examples embedded in docstrings"
+	@echo "  make unittest          - Run standard Python unittests"
+	@echo "  make pytest            - Run tests using PyTest framework"
+	@echo "  make robot             - Run Behavior-Driven (BDD) robot framework tests"
+	@echo ""
+	@echo "Cleanup:"
+	@echo "  make clean             - Remove cache, logs, and generated files"
+	@echo "======================================================================"
+	@echo "Targets prefixed with 'docker_' (e.g., docker_mypy) run the tool"
+	@echo "      inside the container instead of the host machine."
 
 
 docker_shell:
-	docker run -it -v `pwd`:/scratch --workdir /scratch --rm interface_demo /bin/bash
-
-
+	docker run -it -v `pwd`:/scratch --workdir /scratch --rm $(IMAGE_NAME) /bin/bash
 
 
 pydeps:
 	pydeps --no-show $(FILE_NAME)
-
-
 
 
 # https://mypy.readthedocs.io/en/stable/
@@ -38,19 +45,13 @@ mypy:
 	mypy --check-untyped-defs $(FILE_NAME)
 
 docker_mypy:
-	docker run -it -v `pwd`:/scratch --rm interface_demo mypy --check-untyped-defs /scratch/$(FILE_NAME)
-
-
-
+	docker run -it -v `pwd`:/scratch --rm $(IMAGE_NAME) mypy --check-untyped-defs /scratch/$(FILE_NAME)
 
 
 
 # https://pypi.org/project/robotframework/
 robot:
 	robot test_robots/tests.robot
-
-
-
 
 
 
@@ -61,11 +62,9 @@ robot:
 
 
 
-
 # https://automationpanda.com/2017/03/10/python-testing-101-unittest/
 unittest:
 	python3 -m unittest discover
-
 
 
 
@@ -82,7 +81,7 @@ pycallgraph:
 	pycallgraph graphviz -- ./$(FILE_NAME) 4
 
 docker_pycallgraph:
-	docker run -it -v `pwd`:/scratch --rm interface_demo pycallgraph graphviz -- /scratch/$(FILE_NAME)
+	docker run -it -v `pwd`:/scratch --rm $(IMAGE_NAME) pycallgraph graphviz -- /scratch/$(FILE_NAME)
 
 
 
@@ -149,7 +148,7 @@ doctest:
 	python3 -m doctest -v $(FILE_NAME)
 
 docker_doctest:
-	docker run -it -v `pwd`:/scratch --rm interface_demo make -f /scratch/Makefile doctest FILE_NAME=produce_output.py 
+	docker run -it -v `pwd`:/scratch --rm $(IMAGE_NAME) make -f /scratch/Makefile doctest FILE_NAME=produce_output.py 
 
 
 
