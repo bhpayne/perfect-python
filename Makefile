@@ -20,15 +20,16 @@ docker_build:
 docker_run:
 	docker run -it -v `pwd`:/scratch --rm $(mytag) /bin/bash
 
-# for reproducibility, which version of each dependency am I using?
 # as per https://stackoverflow.com/a/42681459/1164295
 docker_digest:
 	docker images --digests
 
 
+# for reproducibility, which version of each dependency am I using?
 python_versions:
-	docker run -it -v `pwd`:/scratch --rm interface_demo pip3 freeze > py_versions.log
+	docker run -v `pwd`:/scratch --rm $(mytag) pip3 freeze > package_versions_python.log
 
+# for reproducibility, which version of each dependency am I using?
 # https://help.ubuntu.com/community/PinningHowto
 apt_versions:
-
+	docker run -v `pwd`:/scratch --rm $(mytag) dpkg-query -l > package_versions_apt.log
