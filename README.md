@@ -1,4 +1,4 @@
-## How to get a Python script with a single function to be production quality?
+# How to get a Python script with a single function to be production quality?
 
 This repository serves as a demonstration and boilerplate for Python best practices. 
 A script (`completed/script/produce_output.py`) generates a random directed graph. 
@@ -61,7 +61,7 @@ make docker
 
 For how to use the Docker image see `completed_script/README.md`.
 
-### TODO
+# TODO
 
 Not yet enacted
 
