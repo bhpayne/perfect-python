@@ -1,8 +1,10 @@
-What would it take to get a simple Python script to be production quality?
+## What would it take to get a simple Python script with a single function to be production quality?
 
-Given a trivial task (e.g., generate a random graph), implement all the best practices.
+This repository serves as a demonstration and boilerplate for Python best practices. 
+A script (`completed/script/produce_output.py`) generates a random directed graph. 
+Everything surrounding that is an example of best practices.
 
-Here's the "trivial task" -- 12 lines of Python 3. 
+Here's the "trivial task" in 12 lines of Python 3:
 ```python
 #!/usr/bin/env python3
 import sys  # command-line arguments
