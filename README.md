@@ -19,8 +19,9 @@ for node_id in range(number_of_nodes):
     the_graph[node_id] = edge_list
 print(the_graph)
 ````
+The specific example above isn't meant to be efficient or even relevant for how one should generate graphs.
 
-For example, 
+The purpose is to have code with which to show best practices. For example, 
 * wrap the code snippet in a function and then have `main` call the function allows other developers to use that same capability elsewhere by importing the function. See `tutorial_on_how_to_evolve_from_research-grade_to_production/input_files/step01_produce_output.py`
 * document the function with a comment block that enables `help`. See `tutorial_on_how_to_evolve_from_research-grade_to_production/input_files/step02_produce_output.py`
 * provide command-line help when calling the .py file
